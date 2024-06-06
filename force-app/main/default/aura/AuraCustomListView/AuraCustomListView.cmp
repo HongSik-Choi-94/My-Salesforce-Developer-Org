@@ -1,0 +1,24 @@
+<aura:component controller="CustomListViewController"
+                implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	
+    <aura:attribute name="targetObjectApiName" type="String" default="" description="" />
+    <aura:attribute name="listviewOptions" type="List" default="[]" description="ListView 목록" />
+    <aura:attribute name="selectedValue" type="String" default="" description="선택한 값" />
+    <aura:attribute name="isShowSpinner" type="Boolean" default="true" />
+    <aura:attribute name="searchTextValue" type="String" default="" description="검색 값" />
+
+    <aura:attribute name="contentList" type="List" default="[]" description="ContentList" />
+
+    <aura:attribute name="content" type="String" default="" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <lightning:input type="search" value="{!v.searchTextValue}" placeholder="검색어를 입력해주세요."/>
+
+    <div class="slds-card">
+        <aura:iteration items="{!v.contentList}" var="item" indexVar="idx">
+            <aura:unescapedHtml value="{!item.content}" />
+        </aura:iteration>
+    </div>
+
+</aura:component>
